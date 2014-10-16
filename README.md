@@ -6,7 +6,7 @@ The program (right now it is just a prototype) aims to encrypt/decrypt (or at le
 ***
 
 Usage:
-_____
+-----
 
 TBA
 
@@ -39,7 +39,7 @@ All data structures are defined in "common.h", all function declaration is done 
 
 			- Vigenere: a string type
 
-		-string cipherType: stores the cipher type
+		- string cipherType: stores the cipher type
 
 	- Functions:
 
