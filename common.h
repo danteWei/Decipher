@@ -1,6 +1,6 @@
 /*
  * common.h
- *      Author: Dante
+ *      Author: Xinjing Wei
  */
 
 #ifndef COMMON_H_
