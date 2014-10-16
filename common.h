@@ -31,7 +31,7 @@ class Cipher
 protected:
 	string ciphertext;		//stores the encrypted message
 	string plaintext;		//stores the original message
-	T key;					//stores the key, if applicable
+	T key;				//stores the key, if applicable
 	string cipherType;		//stores the cipher type
 
 public:
