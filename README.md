@@ -146,7 +146,7 @@ Algorithms:
 
 - Caesar ciphers: The algorithm of solving a Caesar cipher is to do a brute-force attack. Since there are only 26 letters, therefore there are only 25 possible keys. The program will list all possible plaintexts and let the users choose the most possible one.
 
-- Affine ciphers: The equation for enryption is `c_i=alpha*p_i+beta`. Since alpha has only 12 possible values (all of which are co-primes to 26), and beta has only 26 possible values. Therefore, there are 12*26=612 possibilities. Hence a brute-force attack will be efficient.
+- Affine ciphers: The equation for enryption is `c_i=alpha*p_i+beta`. Since alpha has only 12 possible values (all of which are co-primes to 26), and beta has only 26 possible values. Therefore, there are 12*26=312 possibilities. Hence a brute-force attack will be efficient.
 
 - Vigenere ciphers: The algorithm is as follow (assume the max key length is 20):
 

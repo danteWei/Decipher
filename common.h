@@ -43,7 +43,7 @@ public:
 	: ciphertext(ct), plaintext(pt), key(key), cipherType(cipherType){};
 
 	Cipher<string>(string pt="", string ct="", string cipherType="", string key="")
-		: ciphertext(ct), plaintext(pt), key(key), cipherType(cipherType){};*/
+	: ciphertext(ct), plaintext(pt), key(key), cipherType(cipherType){};*/
 
 	void init(string pt="", string ct="", T key=NULL, string cipherType="")
 	{

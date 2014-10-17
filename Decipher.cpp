@@ -14,6 +14,7 @@
 //Encrypt & decrypt functions for all ciphers
 string CaesarCipher::encrypt()
 {
+
 	return "";
 }
 
