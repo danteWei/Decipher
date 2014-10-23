@@ -1,7 +1,7 @@
 Decipher Documentation
 ===
 
-The program (right now it is just a prototype) aims to encrypt/decrypt (or at least approximate the key to) Caesar ciphers, Affine ciphers, and Vigenere ciphers. It is written in C++.
+The program (right now it is just a prototype) aims to encrypt/decrypt (or at least approximate the key to) Caesar ciphers, Affine ciphers, and Vigenere ciphers. It is written in C++. I also included a python program that can list all possible plaintexts if given an Affine ciphertext. The solution to the ciphertext in that python program is: alpha=25, beta=16.
 
 ***
 
