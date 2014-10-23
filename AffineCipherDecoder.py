@@ -8,6 +8,7 @@ alphas=[1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25];     # Stores the possible al
 
 betas=[];       # Stores the possible betas
 
+# The solution to this cipher is alpha=25, beta=16
 ciphertext="yidomxjmeqxjmeqxioiqdyjqvmidvqnmnxjmxjmczsclzmfqxivixsincdcxwdnmzyxqdnixesymflqdseczmqfpmzxmidyxmid";
 
 # Initialize betas
