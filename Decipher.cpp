@@ -48,7 +48,7 @@ string VigenereCipher::decrypt()
 AffineCipher operator*(const AffineCipher &a1, const AffineCipher &a2)
 {
 
-	assert(((a2.key != NULL && a2.ciphertext.compare("") == 0 && a2.plaintext.compare("") == 0) || (a1.ciphertext.compare(a2.plaintext) == 0)) && "Cipher composition failed, text doesn't match.");
+	assert(((a2.alpha != 0 && a2.ciphertext.compare("") == 0 && a2.plaintext.compare("") == 0) || (a1.ciphertext.compare(a2.plaintext) == 0)) && "Cipher composition failed, text doesn't match.");
 	AffineCipher result;
 	result.init(a1.plaintext, a1.ciphertext, (a1.alpha*a2.alpha), (a2.alpha*a1.beta+a2.beta));
 	if (a2.ciphertext.compare("") == 0)
@@ -58,7 +58,7 @@ AffineCipher operator*(const AffineCipher &a1, const AffineCipher &a2)
 
 CaesarCipher operator*(const CaesarCipher &c1, const CaesarCipher &c2)
 {
-	assert(((c2.key != NULL && c2.ciphertext.compare("") == 0 && c2.plaintext.compare("") == 0) || (c1.ciphertext.compare(c2.plaintext) == 0)) && "Cipher composition failed, text doesn't match.");
+	assert(((c2.key != 0 && c2.ciphertext.compare("") == 0 && c2.plaintext.compare("") == 0) || (c1.ciphertext.compare(c2.plaintext) == 0)) && "Cipher composition failed, text doesn't match.");
 	CaesarCipher result;
 
 	result.init(c1.plaintext, c2.ciphertext, ((c1.key + c2.key) % 26));
@@ -69,7 +69,7 @@ CaesarCipher operator*(const CaesarCipher &c1, const CaesarCipher &c2)
 
 VigenereCipher operator*(const VigenereCipher &v1, const VigenereCipher &v2)
 {
-	assert(((v2.key != NULL && v2.ciphertext.compare("") == 0 && v2.plaintext.compare("") == 0) || (v1.ciphertext.compare(v2.plaintext) == 0)) && "Cipher composition failed, text doesn't match.");
+	assert(((v2.key.compare("") && v2.ciphertext.compare("") == 0 && v2.plaintext.compare("") == 0) || (v1.ciphertext.compare(v2.plaintext) == 0)) && "Cipher composition failed, text doesn't match.");
 	VigenereCipher result;
 
 	string s="";
