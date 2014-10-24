@@ -263,7 +263,7 @@ public:
 			Cipher<AffineKey>::setCipherType("Affine");
 		return Cipher<AffineKey>::getCipherType();
 	}
-
+	AffineKey getKey(){ return Cipher<AffineKey>::getKey(); }
 	//Affine cipher composition
 	friend AffineCipher operator*(const AffineCipher&, const AffineCipher&);
 
