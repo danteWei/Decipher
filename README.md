@@ -5,6 +5,18 @@ The program (right now it is just a prototype) aims to encrypt/decrypt (or at le
 
 ***
 
+Group:
+-----
+**Igor Epshtein**: Caesar Cipher & Affine Cipher
+
+**Justin Cheuing**: PPT
+
+**Stephanie Heisler**: Report
+
+**Xinjing Wei**: Vigenere Cipher
+
+***
+
 Usage:
 -----
 
