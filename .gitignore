@@ -6,3 +6,6 @@ Decipher/
 Debug/
 .cproject
 .project
+
+.pydevproject
+.README.md.html

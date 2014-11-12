@@ -11,6 +11,8 @@
 #include <cassert>
 #include "common.h"
 
+using namespace std;
+
 //Encrypt & decrypt functions for all ciphers
 string CaesarCipher::encrypt()
 {
@@ -35,11 +37,71 @@ string AffineCipher::decrypt()
 
 string VigenereCipher::encrypt()
 {
-	return "";
+	string plain = this->getPlaintext();
+	string key = this->getKey();
+	char *cipher="";
+	//If nothing to encrypt
+	if (plain.compare("") == 0)
+	{
+		cout << "There is nothing to encrypt." << endl;
+		return "";
+	}
+	//If no key is specified
+	if (key.compare("") == 0)
+	{
+		cout << "The key is empty, cannot encrypt." << endl;
+		return "";
+	}
+	//encrypt the plaintext
+	int keyIndex=0;
+	for (int i=0; i<plain.length(); i++)
+	{
+		if (keyIndex == key.length())
+			keyIndex = 0;
+		int tmp = static_cast<int> (plain[i]) + static_cast<int> (key[keyIndex]);
+		if (tmp > 122)
+			tmp-=26;
+		cipher[i]=static_cast<char> (tmp);
+		keyIndex++;
+	}
+	//Copy the encrypted text to the cipher
+	string newCipher="";
+	if (newCipher.copy(cipher, plain.length(), 0) != plain.length())
+	{
+		cout << "Error in encryption." << endl;
+		return "";
+	}
+	this->setCiphertext(newCipher);
+	return this->getCiphertext();
 }
 
 string VigenereCipher::decrypt()
 {
+	string cipher = this->getCiphertext();
+	//check if the cipher is empty
+	if (cipher.compare("") == 0)
+	{
+		cout << "There is nothing to decrypt." << endl;
+		return "";
+	}
+	int maxShift=1, maxMatch=0;
+	int count = 0;
+	//Greedy algorithm to find maxMatch
+	for (int i=1; i<21; i++)
+	{
+		//compare the ciphertext with its shifted version
+		for (int j=0; (cipher.length() - i > 0) && j < cipher.length() - i; j++)
+			if (cipher[j] == cipher[j+i])
+				count++;
+		//If this match is greater than the previous match
+		if (count > maxMatch)
+		{
+			maxShift = i;
+			maxMatch = count;
+		}
+	}
+
+
 	return "";
 }
 
