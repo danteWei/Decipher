@@ -13,7 +13,7 @@ Group:
 
 **Stephanie Heisler**: Report
 
-**Xinjing Wei**: Vigenere Cipher
+**Xinjing Wei**: Vigenere Cipher (done)
 
 ***
 
