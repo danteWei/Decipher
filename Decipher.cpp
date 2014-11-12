@@ -39,7 +39,7 @@ string VigenereCipher::encrypt()
 {
 	string plain = this->getPlaintext();
 	string key = this->getKey();
-	char *cipher="";
+	char *cipher=NULL;
 	//If nothing to encrypt
 	if (plain.compare("") == 0)
 	{
@@ -64,6 +64,7 @@ string VigenereCipher::encrypt()
 		cipher[i]=static_cast<char> (tmp);
 		keyIndex++;
 	}
+	cipher[plaintext.length()]='\0';
 	//Copy the encrypted text to the cipher
 	string newCipher="";
 	if (newCipher.copy(cipher, plain.length(), 0) != plain.length())
