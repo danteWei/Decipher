@@ -7,7 +7,7 @@
  */
 
 #include <iostream>
-#include <string.h>
+#include <cstring>
 #include <cassert>
 #include "common.h"
 
@@ -53,16 +53,13 @@ string VigenereCipher::encrypt()
 		return "";
 	}
 	//encrypt the plaintext
-	int keyIndex=0;
+	int keyLen=key.length();
 	for (int i=0; i<plain.length(); i++)
 	{
-		if (keyIndex == key.length())
-			keyIndex = 0;
-		int tmp = static_cast<int> (plain[i]) + static_cast<int> (key[keyIndex]);
+		int tmp = static_cast<int> (plain[i]) + static_cast<int> (key[(i%keyLen)]);
 		if (tmp > 122)
 			tmp-=26;
 		cipher[i]=static_cast<char> (tmp);
-		keyIndex++;
 	}
 	cipher[plaintext.length()]='\0';
 	//Copy the encrypted text to the cipher
@@ -102,8 +99,48 @@ string VigenereCipher::decrypt()
 		}
 	}
 
+	int m[26][maxShift];
+	for (int i=0; i<26; i++)
+		for (int j=0; j<maxShift; j++)
+			m[i][j]=0;
 
-	return "";
+	for (int i=0; i<26; i++)
+			for (int j=0; j<maxShift; j++)
+				for (int k=0; k<cipher.length(); k+=maxShift)
+					if (cipher.at(j+k) == (static_cast<char> (i+97)))
+						m[i][j]+=1;
+
+	double s[26][maxShift];
+	//matrices multiplication
+	for (int i=0; i<26; i++)
+		for(int j=0; j<maxShift; j++)
+		{
+			int k=i+j;
+			if (k >= 26)
+				k-=26;
+			s[i][j]=m[i][j]*charProb[k];
+		}
+
+	char *key=new char[maxShift];
+
+	int val=0, c=-1, index=0;
+
+	for (int i=0; i<maxShift; i++)
+	{
+		for(int j=0; j<26; j++)
+			if (val < s[j][i])
+			{
+				val = s[j][i];
+				c = 26 - j;
+			}
+		key[index]=static_cast<char>(val+97);
+		index++;
+	}
+
+	string approxKey = "";
+	approxKey.copy(key, maxShift, 0);
+	delete[] key;
+	return approxKey;
 }
 
 //cipher compositions (of the same type)
