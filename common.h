@@ -218,7 +218,7 @@ public:
 class AffineCipher: public Cipher<AffineKey>
 {
 private:
-	int alpha, beta;		//stores the "keys" to a Affine cipher
+	int alpha, beta;		//stores the "keys" to an Affine cipher
 	char cipherToPlainArray[];
 public:
 	//Constructor & Destructor
@@ -263,6 +263,7 @@ public:
 			Cipher<AffineKey>::setCipherType("Affine");
 		return Cipher<AffineKey>::getCipherType();
 	}
+
 	AffineKey getKey(){ return Cipher<AffineKey>::getKey(); }
 	//Affine cipher composition
 	friend AffineCipher operator*(const AffineCipher&, const AffineCipher&);
@@ -312,12 +313,5 @@ public:
 	string decrypt();
 };
 
-
-//function for decryption
-template <typename T>
-void decrypt(T &cipher);
-
-template <typename T>
-void encrypt(T &cipher);
 
 #endif /* COMMON_H_ */

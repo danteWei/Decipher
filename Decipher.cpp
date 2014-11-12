@@ -148,3 +148,5 @@ VigenereCipher operator*(const VigenereCipher &v1, const VigenereCipher &v2)
 			result.encrypt();
 	return result;
 }
+
+
