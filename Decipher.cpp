@@ -107,7 +107,7 @@ string VigenereCipher::decrypt()
 }
 
 //cipher compositions (of the same type)
-//no need to check the key as long as the ciphertext of the first one equals the plaintext of the second one
+//no need to check the key as long as the ciphertext of the first one matches the plaintext of the second one
 AffineCipher operator*(const AffineCipher &a1, const AffineCipher &a2)
 {
 
