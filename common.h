@@ -250,6 +250,29 @@ public:
 	}
 	//determine if the cipher is decrypted or not
 	bool isDecypted(){ return alpha != 0; }
+	
+	 //return inverse modulu for decription method
+    int modmulinverse()
+    {
+        int x = 0,y = 1,u = 1,v = 0;
+        int e = 26,f =alpha;
+        int c,d,q,r;
+        while(f != 1)
+        {
+            q = e/f;
+            r = e%f;
+            c = x-q*u;
+            d = y-q*v;
+            x = u;
+            y = v;
+            u = c;
+            v = d;
+            e = f;
+            f = r;
+        } 
+        u = (u+26)%26;
+        return u;
+    }
 
 	//getter
 	int getAlpha(){ return key.alpha; }
