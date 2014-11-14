@@ -173,7 +173,9 @@ Algorithms:
 			//occurLetter[0][0] stores the numebr of occurence in every keyLength letters of 'a'
 			//starting from the first letter of the ciphertext
 
-		multiply every row of occurLetter with 26 permutations of cahrProb[26], find the largest entries in each column, the corresponding letters form the key (or at least an approximation of the key)
+		multiply every row of occurLetter with 26 permutations of cahrProb[26], 
+		find the largest entries in each column, the corresponding letters form the key 
+		(or at least an approximation of the key)
 
 ***
 
