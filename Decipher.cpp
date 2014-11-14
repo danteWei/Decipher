@@ -17,22 +17,146 @@ using namespace std;
 string CaesarCipher::encrypt()
 {
 
-	return "";
+	string plain = this->getPlaintext();
+    int key = this->getKey();
+    char c;
+     string temp="";
+    //If nothing to encrypt
+    if (plain.compare("") == 0)
+    {
+        cout << "There is nothing to encrypt." << endl;
+        return "";
+    }
+    //If no key is specified
+    if (key == 0)
+    {
+        cout << "The key is empty, cannot encrypt." << endl;
+        return "";
+    }
+    //encrypt the plaintext
+   
+    string letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    for(int i=0; i<= plain.length();i++)
+    {
+        if(c==' ')
+            temp+=c;
+        else
+        {
+            for(int j=0;j<25;j++)
+            {
+                c=plain[i];
+                if(c==letters[j] || c==tolower(letters[j]))
+                {
+                   c=shifts[j];
+                    temp+=c;
+                }
+            }
+        }
+    }
+    return temp;
 }
 
 string CaesarCipher::decrypt()
 {
-	return "";
+	string cipher = this->getCiphertext();
+    string letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    string temp="";
+    char c;
+    //check if the cipher is empty
+    if (cipher.compare("") == 0)
+    {
+        cout << "There is nothing to decrypt." << endl;
+        return "";
+    }
+    //decryption
+    for(int i=0;i<cipher.length();i++)
+    {
+        if(c==' ')
+            temp+=c;
+        else
+        {
+            for(int j=0;j<=25;j++)
+            {
+                c=cipher[i];
+                if(c==shifts[j])
+                {
+                    temp+=tolower(letters[j]);
+                }
+            }
+        }
+    }
+    return temp;
 }
 
 string AffineCipher::encrypt()
 {
-	return "";
+	string plain = this->getPlaintext();
+    string letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    int alpha = this->getAlpha();
+    int beta = this->getBeta();
+    string temp="";
+    
+    //Check if there is nothing to encrypt
+    if(plain.compare("")==0)
+    {
+        cout << "There is nothing to encrypt." << endl;
+        return "";
+    }
+    //If no key is specified
+    if (alpha == 0 && beta == 0)
+    {
+        cout << "The key is empty, cannot encrypt." << endl;
+        return "";
+    }
+    //encrypt the plaintext
+    for(int i=0;i<=plain.length();i++)
+    {
+        for(int j=0;j<=25;j++)
+        {
+            if(plain[i]==' ')
+            {
+                temp+=' ';
+            }
+            else
+            {
+                if(letters[j]==plain[i] || tolower(letters[j]==plain[i]))
+                {
+                    temp+= tolower(letters[(alpha*j+beta)%26]);
+                }
+            }
+        }
+    }
+    return temp;
 }
 
 string AffineCipher::decrypt()
 {
-	return "";
+	string cipher = this->getCiphertext();
+    string temp="";
+    int alpha = this->getAlpha();
+    int beta = this->getBeta();
+    int inversmod = modmulinverse();
+    
+    //check if the cipher is empty
+    if (cipher.compare("") == 0)
+    {
+        cout << "There is nothing to decrypt." << endl;
+        return "";
+    }
+    
+    for(int i=0;i<=cipher.length();i++)
+    {
+        if(cipher[i]==' ')
+        {
+            temp+=' ';
+        }
+        else
+        {
+                temp+=(char)(inversmod*(((int)cipher[i]-97)-beta))%26;
+        }
+    }
+    
+    return temp;
 }
 
 string VigenereCipher::encrypt()
