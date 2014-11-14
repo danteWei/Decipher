@@ -7,7 +7,7 @@ The program (right now it is just a prototype) aims to encrypt/decrypt (or at le
 
 Group:
 -----
-**Igor Epshtein**: Caesar Cipher & Affine Cipher
+**Igor Epshtein**: Caesar Cipher & Affine Cipher (done)
 
 **Justin Cheuing**: PPT
 
