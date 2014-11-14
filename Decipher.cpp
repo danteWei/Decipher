@@ -152,7 +152,7 @@ string AffineCipher::decrypt()
         }
         else
         {
-                temp+=(char)(inversmod*(((int)cipher[i]-97)-beta))%26;
+                temp+=(char)((inversmod*(((int)cipher[i]-97)-beta))%26)+97;
         }
     }
     
