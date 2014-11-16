@@ -16,8 +16,7 @@ using namespace std;
 //Encrypt & decrypt functions for all ciphers
 string CaesarCipher::encrypt()
 {
-
-	string plain = this->getPlaintext();
+    string plain = this->getPlaintext();
     int key = this->getKey();
     char c;
      string temp="";
@@ -35,22 +34,13 @@ string CaesarCipher::encrypt()
     }
     //encrypt the plaintext
    
-    string letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     for(int i=0; i<= plain.length();i++)
     {
         if(c==' ')
-            temp+=c;
+            temp+=plain[i];
         else
         {
-            for(int j=0;j<25;j++)
-            {
-                c=plain[i];
-                if(c==letters[j] || c==tolower(letters[j]))
-                {
-                   c=shifts[j];
-                    temp+=c;
-                }
-            }
+            temp+= shifts[(int)plain[i]-97];
         }
     }
     return temp;
@@ -58,10 +48,9 @@ string CaesarCipher::encrypt()
 
 string CaesarCipher::decrypt()
 {
-	string cipher = this->getCiphertext();
-    string letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    string cipher = this->getCiphertext();
     string temp="";
-    char c;
+    int key = this->getKey();
     //check if the cipher is empty
     if (cipher.compare("") == 0)
     {
@@ -71,27 +60,20 @@ string CaesarCipher::decrypt()
     //decryption
     for(int i=0;i<cipher.length();i++)
     {
-        if(c==' ')
-            temp+=c;
+        if(cipher[i] ==' ')
+            temp+=cipher[i];
         else
         {
-            for(int j=0;j<=25;j++)
-            {
-                c=cipher[i];
-                if(c==shifts[j])
-                {
-                    temp+=tolower(letters[j]);
-                }
-            }
+                    temp+=(char)((int)cipher[i]-key);
+            
         }
     }
-    return temp;
+    return "";
 }
 
 string AffineCipher::encrypt()
 {
-	string plain = this->getPlaintext();
-    string letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    string plain = this->getPlaintext();
     int alpha = this->getAlpha();
     int beta = this->getBeta();
     string temp="";
@@ -111,29 +93,22 @@ string AffineCipher::encrypt()
     //encrypt the plaintext
     for(int i=0;i<=plain.length();i++)
     {
-        for(int j=0;j<=25;j++)
-        {
             if(plain[i]==' ')
             {
                 temp+=' ';
             }
             else
             {
-                if(letters[j]==plain[i] || tolower(letters[j]==plain[i]))
-                {
-                    temp+= tolower(letters[(alpha*j+beta)%26]);
-                }
+                    temp+= (char)((alpha*((int)plain[i]-97)+beta)%26)+97;
             }
-        }
     }
     return temp;
 }
 
 string AffineCipher::decrypt()
 {
-	string cipher = this->getCiphertext();
+    string cipher = this->getCiphertext();
     string temp="";
-    int alpha = this->getAlpha();
     int beta = this->getBeta();
     int inversmod = modmulinverse();
     
@@ -152,7 +127,7 @@ string AffineCipher::decrypt()
         }
         else
         {
-                temp+=(char)((inversmod*(((int)cipher[i]-97)-beta))%26)+97;
+                temp+=(char)(inversmod*(((int)cipher[i]-97)-beta))%26;
         }
     }
     
