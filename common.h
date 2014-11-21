@@ -35,16 +35,6 @@ protected:
 	string cipherType;		//stores the cipher type
 
 public:
-	//Constructor & Destructor
-	/*Cipher(string pt="", string ct="", string cipherType="", T key=NULL)
-	: ciphertext(ct), plaintext(pt), cipherType(cipherType), key(key){};
-
-	Cipher<int>(string pt="", string ct="", string cipherType="", int key=0)
-	: ciphertext(ct), plaintext(pt), key(key), cipherType(cipherType){};
-
-	Cipher<string>(string pt="", string ct="", string cipherType="", string key="")
-	: ciphertext(ct), plaintext(pt), key(key), cipherType(cipherType){};*/
-
 	void init(string pt="", string ct="", T key=NULL, string cipherType="")
 	{
 		if (pt.length() != 0 && ct.length() != 0)
@@ -126,12 +116,6 @@ class CaesarCipher: public Cipher<int>
 private:
 	char shifts[26];		//stores the shifts for all 26 letters
 public:
-	//Constructor & Destructor
-	/*CaesarCipher(string pt="", string ct="", int shift=0)
-	: Cipher<int>(pt, ct, "Caesar", shift){}
-
-	~CaesarCipher(){ Cipher<int>::~Cipher(); }*/
-
 	//initialization
 	void init(string pt="", string ct="", int shift=0)
 	{
@@ -221,22 +205,6 @@ private:
 	int alpha, beta;		//stores the "keys" to an Affine cipher
 	char cipherToPlainArray[];
 public:
-	//Constructor & Destructor
-	/*AffineCipher(string pt="", string ct="", int alpha=0, int beta=0)
-	{
-		Cipher<AffineKey>(pt, ct, "Affine");
-		this->alpha=alpha;
-		this->beta=beta;
-		AffineKey key;
-		key.alpha=alpha;
-		key.beta=beta;
-		Cipher<AffineKey>::setPlaintext(pt);
-		Cipher<AffineKey>::setCiphertext(ct);
-		Cipher<AffineKey>::setKey(key);
-	}*/
-
-	~AffineCipher(){ Cipher<AffineKey>::~Cipher(); key.alpha=0; key.beta=0; }
-
 	//initialization
 	void init(string pt="", string ct="", int alpha=0, int beta=0)
 	{
@@ -302,12 +270,6 @@ private:
 	//stores the probability distribution of 26 letter, used for decryption
 
 public:
-	//Constructor & Destructor
-	/*VigenereCipher(string pt="", string ct="", string key="", int keyLen=0)
-	: Cipher<string>(pt, ct, key, "Vigenere"), keyLength(keyLen >= key.length() ? keyLen : key.length()){}
-
-	~VigenereCipher(){ Cipher<string>::~Cipher(); keyLength=0; }
-	 */
 	//initialization
 	void init(string pt="", string ct="", string key="", int keyLen=0)
 	{
