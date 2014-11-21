@@ -44,14 +44,7 @@ public:
 		this->key=key;
 		this->cipherType=cipherType;
 	}
-
-	virtual ~Cipher()
-	{
-		ciphertext="";
-		plaintext="";
-		cipherType="";
-	}
-
+	
 	//a cipher is empty if both the plaintext and the ciphertext are empty strings
 	bool isEmpty()
 	{
